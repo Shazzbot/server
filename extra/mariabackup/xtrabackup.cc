@@ -5828,7 +5828,7 @@ static int main_low(char** argv)
 
 	/* --print-param */
 	if (xtrabackup_print_param) {
-		std::cout << print_param_str;
+		printf("%s", print_param_str.str().c_str());
 		return(EXIT_SUCCESS);
 	}
 
