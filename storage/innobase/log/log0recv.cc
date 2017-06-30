@@ -2969,6 +2969,14 @@ static
 dberr_t
 recv_init_missing_space(dberr_t err, const recv_spaces_t::const_iterator& i)
 {
+	if (srv_operation == SRV_OPERATION_RESTORE) {
+		ib::warn() << "Tablespace " << i->first << " was not"
+			" found at " << i->second.name << " when"
+			" restoring a (partial?) backup. All redo log"
+			" for this file will be ignored!";
+		return(err);
+	}
+
 	if (srv_force_recovery == 0) {
 		ib::error() << "Tablespace " << i->first << " was not"
 			" found at " << i->second.name << ".";
