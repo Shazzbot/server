@@ -5075,7 +5075,7 @@ static bool add_field(String *sql, const char *field_name, int typ, int len,
                       char *xtra, char *fmt, int flag, bool dbf, char v)
 {
   char var = (len > 255) ? 'V' : v;
-  bool error= false;
+  bool q, error= false;
   const char *type= PLGtoMYSQLtype(typ, dbf, var);
 
   error|= sql->append('`');
@@ -5116,7 +5116,17 @@ static bool add_field(String *sql, const char *field_name, int typ, int len,
   if (dft && *dft) {
     error|= sql->append(" DEFAULT ");
 
-    error|= sql->append(dft);
+    if (typ == TYPE_DATE)
+      q = (strspn(dft, "0123456789 -:/") == strlen(dft));
+    else
+      q = !IsTypeNum(typ);
+
+    if (q) {
+      error|= sql->append("'");
+      error|= sql->append_for_single_quote(dft, strlen(dft));
+      error|= sql->append("'");
+    } else
+      error|= sql->append(dft);
 
     } // endif dft
 

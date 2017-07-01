@@ -216,10 +216,10 @@ Field	Type	Collation	Null	Key	Default	Extra	Privileges	Comment
 a	int(11)	NULL	YES	MUL	NULL		select,insert,update,references	
 show full columns from mysql.db like "Insert%";
 Field	Type	Collation	Null	Key	Default	Extra	Privileges	Comment
-Insert_priv	enum('N','Y')	utf8_general_ci	NO		'N'		select,insert,update,references	
+Insert_priv	enum('N','Y')	utf8_general_ci	NO		N		select,insert,update,references	
 show full columns from v1;
 Field	Type	Collation	Null	Key	Default	Extra	Privileges	Comment
-c	varchar(64)	utf8_general_ci	NO		''		select,insert,update,references	
+c	varchar(64)	utf8_general_ci	NO				select,insert,update,references	
 select * from information_schema.COLUMNS where table_name="t1"
 and column_name= "a";
 TABLE_CATALOG	TABLE_SCHEMA	TABLE_NAME	COLUMN_NAME	ORDINAL_POSITION	COLUMN_DEFAULT	IS_NULLABLE	DATA_TYPE	CHARACTER_MAXIMUM_LENGTH	CHARACTER_OCTET_LENGTH	NUMERIC_PRECISION	NUMERIC_SCALE	DATETIME_PRECISION	CHARACTER_SET_NAME	COLLATION_NAME	COLUMN_TYPE	COLUMN_KEY	EXTRA	PRIVILEGES	COLUMN_COMMENT	IS_GENERATED	GENERATION_EXPRESSION
@@ -1447,12 +1447,12 @@ show columns from t1;
 Field	Type	Null	Key	Default	Extra
 f1	varchar(50)	YES		NULL	
 f2	varchar(50)	NO		NULL	
-f3	varchar(50)	YES		''	
+f3	varchar(50)	YES			
 f4	varchar(50)	YES		NULL	
 f5	bigint(20)	NO		NULL	
 f6	bigint(20)	NO		10	
 f7	datetime	NO		NULL	
-f8	datetime	YES		'2006-01-01 00:00:00'	
+f8	datetime	YES		2006-01-01 00:00:00	
 drop table t1;
 show fields from information_schema.table_names;
 ERROR 42S02: Unknown table 'table_names' in information_schema
