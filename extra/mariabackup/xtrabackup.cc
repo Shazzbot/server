@@ -3282,7 +3282,8 @@ open_or_create_log_file(
 
 	ut_a(fil_validate());
 
-	ut_a(fil_node_create(name, srv_log_file_size, space, false, false));
+	ut_a(fil_node_create(name, srv_log_file_size >> srv_page_size_shift,
+			     space, false, false));
 
 	return(DB_SUCCESS);
 }
