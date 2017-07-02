@@ -36,6 +36,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <mysql/client_plugin.h>
 #include <mysql.h>
 #include "common.h"
+#include <string.h>
 
 extern int auth_client(char *principal_name,
                        char *mech,

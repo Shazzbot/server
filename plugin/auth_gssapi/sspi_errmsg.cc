@@ -28,7 +28,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <my_global.h>
 #include <windows.h>
-#include <stdio.h>
+#include <string.h>
 
 #define ERRSYM(x) {x, #x}
 static struct {
